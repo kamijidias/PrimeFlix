@@ -1,6 +1,7 @@
 .lista-filmes{
     max-width: 800px;
     margin: 14px auto;
+    background-color: aqua;
 }
 
 .loading{
