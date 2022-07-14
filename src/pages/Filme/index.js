@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 import "./filme-info.css"
 import api from '../../services/api'
+import { toast } from 'react-toastify'
 
 function Filme() {
     const { id } = useParams();
@@ -44,13 +45,13 @@ function Filme() {
         const hasFilme = filmesSalvos.some( (filmesSalvos) => filmesSalvos.id === filme.id )
 
         if(hasFilme){
-            alert("Esse filme já esta na sua lista")
+            toast.warning("Esse filme já esta na sua lista!")
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem("@primeflix", JSON.stringify(filmesSalvos));
-        alert("Filme salvo com sucesso");
+        toast.success("Filme salvo com sucesso")
 
     }
 
@@ -68,7 +69,7 @@ function Filme() {
             <img src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`} alt={filme.title} />
             <h3>Sinopse</h3>
             <span>{filme.overview}</span>
-            <strong>Avaliação: {filme.vote_avarage} / 10</strong>
+            <strong>Avalição: {filme.vote_average} / 10</strong>
 
             <div className='area-buttons'>
                 <button onClick={salvarFlime}>Salvar</button>
